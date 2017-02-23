@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import bank.Account;
 import bank.InactiveException;
 import bank.OverdrawException;
 
@@ -19,7 +21,7 @@ public class Driver implements bank.BankDriver {
 
 	@Override
 	public void connect(String[] args) {
-		bank = new LocalBank();
+		bank = new Bank();
 		System.out.println("connected...");
 	}
 
@@ -37,25 +39,29 @@ public class Driver implements bank.BankDriver {
 	static class Bank implements bank.Bank {
 
 		private final Map<String, Account> accounts = new HashMap<>();
+		private final String accountPrefix = "A";
+		private int idCounter;
 
 		@Override
 		public Set<String> getAccountNumbers() {
-			System.out.println("Bank.getAccountNumbers has to be implemented");
-			return new HashSet<String>(); // TODO has to be replaced
+			return accounts.entrySet().stream()
+					.filter(stringAccountEntry -> stringAccountEntry.getValue().isActive())
+					.map(Map.Entry::getKey)
+					.collect(Collectors.toSet());
 		}
 
 		@Override
 		public String createAccount(String owner) {
-			// TODO has to be implemented
-			System.out.println("Bank.createAccount has to be implemented");
-			return null;
+			String number = accountPrefix + idCounter++;
+			accounts.put(number, new Account(owner, number));
+			return number;
 		}
 
 		@Override
 		public boolean closeAccount(String number) {
-			// TODO has to be implemented
-			System.out.println("Bank.closeAccount has to be implemented");
-			return false;
+			if(!accounts.containsKey(number)) return false;
+			Account account = accounts.get(number);
+			return account.deactivate();
 		}
 
 		@Override
@@ -64,10 +70,23 @@ public class Driver implements bank.BankDriver {
 		}
 
 		@Override
-		public void transfer(bank.Account from, bank.Account to, double amount)
-				throws IOException, InactiveException, OverdrawException {
-			// TODO has to be implemented
-			System.out.println("Bank.transfer has to be implemented");
+		public void transfer(bank.Account from, bank.Account to, double amount) throws IOException, InactiveException, OverdrawException {
+			if(amount < 0) throw new IllegalArgumentException("Amount is negative");
+			if(!from.isActive() || !to.isActive()) throw new InactiveException("One of the Accounts is inactive");
+			if(from.getBalance() - amount < 0) throw new OverdrawException("Account a has not enough money");
+
+			double removedFormA = 0;
+			double addedToB = 0;
+			try{
+				from.withdraw(amount);
+				removedFormA = amount;
+				to.deposit(amount);
+				addedToB = amount;
+			} catch (IOException | IllegalArgumentException | OverdrawException | InactiveException e){
+				from.deposit(removedFormA);
+				to.withdraw(addedToB);
+				throw e;
+			}
 		}
 
 	}
@@ -78,9 +97,10 @@ public class Driver implements bank.BankDriver {
 		private double balance;
 		private boolean active = true;
 
-		Account(String owner) {
+		Account(String owner, String number) {
 			this.owner = owner;
-			// TODO account number has to be set here or has to be passed using the constructor
+			this.number = number;
+			active = true;
 		}
 
 		@Override
@@ -105,14 +125,26 @@ public class Driver implements bank.BankDriver {
 
 		@Override
 		public void deposit(double amount) throws InactiveException {
-			// TODO has to be implemented
-			System.out.println("Account.deposit has to be implemented");
+			if(!active) throw new InactiveException();
+			if(amount < 0) throw new IllegalArgumentException("Amount is negative");
+			if(balance + amount < 0) throw new IllegalArgumentException("Overflow");
+			balance += amount;
 		}
 
 		@Override
 		public void withdraw(double amount) throws InactiveException, OverdrawException {
-			// TODO has to be implemented
-			System.out.println("Account.withdraw has to be implemented");
+			if(!active) throw new InactiveException();
+			if(amount < 0) throw new IllegalArgumentException("Amount is negative");
+			if(balance - amount < 0) throw new OverdrawException("There is not enough balance on the account");
+			balance -= amount;
+		}
+
+		public boolean deactivate(){
+			if(!active) return false;
+			if(balance == 0){
+				active = false;
+			}
+			return !active;
 		}
 
 	}
