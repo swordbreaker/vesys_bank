@@ -3,17 +3,12 @@ package bank.sockets.server;
 import bank.Bank;
 import bank.InactiveException;
 import bank.OverdrawException;
-import bank.sockets.Driver;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Created by tobia on 27.02.2017.
- */
 public class ServerBank implements Bank {
     private final Map<String, ServerAccount> accounts = new HashMap<>();
     private final String accountPrefix = "A";

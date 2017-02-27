@@ -84,5 +84,6 @@ public interface Account extends Serializable {
 	 */
 	double getBalance() throws IOException;
 
+
 	boolean deactivate() throws IOException;
 }

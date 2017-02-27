@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import bank.Account;
 import bank.InactiveException;
 import bank.OverdrawException;
 import bank.commands.*;
@@ -88,21 +89,37 @@ public class Driver implements bank.BankDriver {
 
         @Override
         public bank.Account getAccount(String number) throws IOException {
-            return new Account(number);
+            Response<bank.Account> response = Driver.sendData(new GetAccountCommand(number));
+            if(response.getResponse() != null){
+                return new Account(number);
+            }
+            else{
+                return null;
+            }
         }
 
         @Override
         public void transfer(bank.Account from, bank.Account to, double amount) throws IOException, InactiveException, OverdrawException {
             if(amount < 0) throw new IllegalArgumentException("Amount is negative");
-            if(!from.isActive() || !to.isActive()) throw new InactiveException("One of the Accounts is inactive");
-            if(from.getBalance() - amount < 0) throw new OverdrawException("Account a has not enough money");
 
             double removedFormA = 0;
             double addedToB = 0;
             try{
                 Response response = Driver.sendData(new TransferCommand(from, to, amount));
                 if(response.getException() != null){
-                    throw new IOException(response.getException().getMessage());
+                    Exception exp = response.getException();
+                    if(exp instanceof  InactiveException){
+                        throw (InactiveException)exp;
+                    }
+                    else if (exp instanceof OverdrawException){
+                        throw (OverdrawException)exp;
+                    }
+                    else if (exp instanceof  IOException) {
+                        throw (IOException)exp;
+                    }
+                    else{
+                        throw new IOException(response.getException().getMessage());
+                    }
                 }
                 from.withdraw(amount);
                 removedFormA = amount;
@@ -114,16 +131,13 @@ public class Driver implements bank.BankDriver {
                 throw e;
             }
         }
-
     }
 
     static class Account implements bank.Account {
         private String number;
-        private boolean active = true;
 
         Account(String number) {
             this.number = number;
-            active = true;
         }
 
         @Override
@@ -160,22 +174,43 @@ public class Driver implements bank.BankDriver {
 
         @Override
         public void deposit(double amount) throws InactiveException, IOException {
-            if(!active) throw new InactiveException();
+
             if(amount < 0) throw new IllegalArgumentException("Amount is negative");
 
             Response response = sendData(new DepositCommand(getNumber(), amount));
             if(response.getException() != null){
-                throw new IOException(response.getException().getMessage());
+                Exception exp = response.getException();
+                if(exp instanceof InactiveException){
+                    throw (InactiveException)exp;
+                }
+                else if(exp instanceof  IOException){
+                    throw (IOException)exp;
+                }
+                else{
+                    exp.printStackTrace();
+                }
             }
         }
 
         @Override
         public void withdraw(double amount) throws InactiveException, OverdrawException, IOException {
-            if(!active) throw new InactiveException();
             if(amount < 0) throw new IllegalArgumentException("Amount is negative");
             Response response = sendData(new WithdrawCommand(getNumber(), amount));
             if(response.getException() != null){
-                throw new IOException(response.getException().getMessage());
+                Exception exp = response.getException();
+                if(exp instanceof  InactiveException)
+                {
+                    throw (InactiveException)exp;
+                }
+                else if(exp instanceof  OverdrawException){
+                    throw (OverdrawException)exp;
+                }
+                else if(exp instanceof IOException){
+                    throw (IOException)exp;
+                }
+                else{
+                    exp.printStackTrace();
+                }
             }
         }
 

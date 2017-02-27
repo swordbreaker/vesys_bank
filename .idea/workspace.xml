@@ -4,10 +4,9 @@
     <list default="true" id="a85af0ad-f8e4-4579-8a9a-248b7c13a39a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bank/Account.java" afterPath="$PROJECT_DIR$/src/bank/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bank/commands/CloseAccountCommand.java" afterPath="$PROJECT_DIR$/src/bank/commands/CloseAccountCommand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bank/commands/GetAccountCommand.java" afterPath="$PROJECT_DIR$/src/bank/commands/GetAccountCommand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bank/sockets/Driver.java" afterPath="$PROJECT_DIR$/src/bank/sockets/Driver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bank/sockets/server/SockedServer.java" afterPath="$PROJECT_DIR$/src/bank/sockets/server/SockedServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bank/sockets/server/ServerBank.java" afterPath="$PROJECT_DIR$/src/bank/sockets/server/ServerBank.java" />
     </list>
     <ignored path="bank.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,21 +31,12 @@
       <file leaf-file-name="GetAccountCommand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/commands/GetAccountCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateAccountCommand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bank/commands/CreateAccountCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
+            <state relative-caret-position="264">
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
               <folding>
-                <element signature="e#263#264#0" expanded="true" />
-                <element signature="e#297#298#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#322#323#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,9 +45,21 @@
       <file leaf-file-name="Bank.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/Bank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+            <state relative-caret-position="620">
+              <caret line="88" column="12" selection-start-line="88" selection-start-column="12" selection-end-line="89" selection-end-column="29" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SockedServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/SockedServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,8 +67,8 @@
       <file leaf-file-name="ServerAccount.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/ServerAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+            <state relative-caret-position="620">
+              <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -75,8 +77,8 @@
       <file leaf-file-name="ServerBank.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/ServerBank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+            <state relative-caret-position="176">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,7 +89,7 @@
       <file leaf-file-name="BankGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/gui/BankGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
+            <state relative-caret-position="4642">
               <caret line="265" column="42" selection-start-line="265" selection-start-column="42" selection-end-line="265" selection-end-column="42" />
               <folding />
             </state>
@@ -97,8 +99,8 @@
       <file leaf-file-name="Account.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+            <state relative-caret-position="1848">
+              <caret line="87" column="43" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,9 +111,12 @@
       <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/bank/sockets/Driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="114" column="13" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="149">
+              <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+              <folding>
+                <element signature="e#4907#4908#0" expanded="true" />
+                <element signature="e#4951#4952#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,7 +124,7 @@
       <file leaf-file-name="TransferCommand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/commands/TransferCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="462">
               <caret line="26" column="21" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="21" />
               <folding />
             </state>
@@ -129,7 +134,7 @@
       <file leaf-file-name="DepositCommand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bank/commands/DepositCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
+            <state relative-caret-position="374">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
@@ -160,13 +165,13 @@
         <option value="$PROJECT_DIR$/src/bank/local/Driver.java" />
         <option value="$PROJECT_DIR$/src/bank/local/LocalAccount.java" />
         <option value="$PROJECT_DIR$/src/bank/local/LocalBank.java" />
-        <option value="$PROJECT_DIR$/src/bank/Account.java" />
-        <option value="$PROJECT_DIR$/src/bank/sockets/server/ServerBank.java" />
         <option value="$PROJECT_DIR$/src/bank/sockets/server/ServerAccount.java" />
         <option value="$PROJECT_DIR$/src/bank/Servers.txt" />
         <option value="$PROJECT_DIR$/src/bank/commands/Response.java" />
         <option value="$PROJECT_DIR$/src/bank/commands/CloseAccountCommand.java" />
         <option value="$PROJECT_DIR$/src/bank/sockets/server/SockedServer.java" />
+        <option value="$PROJECT_DIR$/src/bank/Account.java" />
+        <option value="$PROJECT_DIR$/src/bank/sockets/server/ServerBank.java" />
         <option value="$PROJECT_DIR$/src/bank/commands/GetAccountCommand.java" />
         <option value="$PROJECT_DIR$/src/bank/sockets/Driver.java" />
       </list>
@@ -209,7 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,14 +290,63 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="sockets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vesys_bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vesys_bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="gui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vesys_bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vesys_bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commands" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -830,7 +883,8 @@
       <workItem from="1487743912407" duration="3140000" />
       <workItem from="1487841642571" duration="4900000" />
       <workItem from="1487848574862" duration="1845000" />
-      <workItem from="1488199692254" duration="7816000" />
+      <workItem from="1488199692254" duration="7915000" />
+      <workItem from="1488210188308" duration="1155000" />
     </task>
     <task id="LOCAL-00001" summary="Added command and the socket namspace">
       <created>1488200365057</created>
@@ -846,11 +900,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488204157413</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="The Server client is now working.&#10;the withdraw and deposit method throws the wrong exception when overdraw or inactive.">
+      <created>1488208140359</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1488208140359</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17701000" />
+    <option name="totallyTimeSpent" value="18955000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -897,7 +958,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added command and the socket namspace" />
     <MESSAGE value="Begin implementing commands on the drive" />
-    <option name="LAST_COMMIT_MESSAGE" value="Begin implementing commands on the drive" />
+    <MESSAGE value="The Server client is now working.&#10;the withdraw and deposit method throws the wrong exception when overdraw or inactive." />
+    <option name="LAST_COMMIT_MESSAGE" value="The Server client is now working.&#10;the withdraw and deposit method throws the wrong exception when overdraw or inactive." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -942,9 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#1353#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -976,7 +1035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,9 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#1353#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1136,9 +1191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#1353#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1146,7 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1247,21 +1298,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/SockedServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#984#985#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/commands/CreateAccountCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="242">
           <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
           <folding>
             <element signature="e#263#264#0" expanded="true" />
@@ -1272,7 +1311,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/commands/TransferCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="462">
           <caret line="26" column="21" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="21" />
           <folding />
         </state>
@@ -1280,25 +1319,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/commands/DepositCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
+        <state relative-caret-position="374">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bank/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/gui/BankGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="4642">
           <caret line="265" column="42" selection-start-line="265" selection-start-column="42" selection-end-line="265" selection-end-column="42" />
           <folding />
         </state>
@@ -1306,43 +1335,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/Bank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/ServerAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+        <state relative-caret-position="620">
+          <caret line="88" column="12" selection-start-line="88" selection-start-column="12" selection-end-line="89" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/ServerBank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+        <state relative-caret-position="176">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/SockedServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bank/sockets/server/ServerAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/commands/GetAccountCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-          <folding />
+        <state relative-caret-position="264">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bank/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1848">
+          <caret line="87" column="43" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bank/sockets/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="114" column="13" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="149">
+          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+          <folding>
+            <element signature="e#4907#4908#0" expanded="true" />
+            <element signature="e#4951#4952#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
