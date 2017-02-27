@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by tobia on 27.02.2017.
  */
-public class CloseAccountCommand implements ICommand{
+public class CloseAccountCommand implements ICommand {
     private String number;
 
     public CloseAccountCommand(String number) {

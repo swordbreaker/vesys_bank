@@ -59,11 +59,6 @@ public class Driver implements bank.BankDriver {
     }
 
     static class Bank implements bank.Bank {
-
-        private final Map<String, bank.sockets.Driver.Account> accounts = new HashMap<>();
-        private final String accountPrefix = "A";
-        private int idCounter;
-
         @Override
         public Set<String> getAccountNumbers() throws IOException {
             Response<HashSet<String>> response = Driver.sendData(new GetAccountNumbersCommand());
@@ -83,19 +78,17 @@ public class Driver implements bank.BankDriver {
         }
 
         @Override
-        public boolean closeAccount(String number) {
-            if(!accounts.containsKey(number)) return false;
-            bank.sockets.Driver.Account account = accounts.get(number);
-            return account.deactivate();
-        }
-
-        @Override
-        public bank.Account getAccount(String number) throws IOException {
-            Response<Account> response = sendData(new GetAccountCommand(number));
+        public boolean closeAccount(String number) throws IOException {
+            Response<Boolean> response = Driver.sendData(new CloseAccountCommand(number));
             if(response.getException() != null){
                 throw new IOException(response.getException().getMessage());
             }
             return response.getResponse();
+        }
+
+        @Override
+        public bank.Account getAccount(String number) throws IOException {
+            return new Account(number);
         }
 
         @Override
@@ -107,6 +100,10 @@ public class Driver implements bank.BankDriver {
             double removedFormA = 0;
             double addedToB = 0;
             try{
+                Response response = Driver.sendData(new TransferCommand(from, to, amount));
+                if(response.getException() != null){
+                    throw new IOException(response.getException().getMessage());
+                }
                 from.withdraw(amount);
                 removedFormA = amount;
                 to.deposit(amount);
@@ -122,24 +119,29 @@ public class Driver implements bank.BankDriver {
 
     static class Account implements bank.Account {
         private String number;
-        private String owner;
-        private double balance;
         private boolean active = true;
 
-        Account(String owner, String number) {
-            this.owner = owner;
+        Account(String number) {
             this.number = number;
             active = true;
         }
 
         @Override
-        public double getBalance() {
-            return balance;
+        public double getBalance() throws IOException {
+            Response<Double> response = sendData(new GetBalanceCommand(getNumber()));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+            return response.getResponse();
         }
 
         @Override
-        public String getOwner() {
-            return owner;
+        public String getOwner() throws IOException {
+            Response<String> response = sendData(new GetOwnerCommand(getNumber()));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+            return response.getResponse();
         }
 
         @Override
@@ -148,33 +150,42 @@ public class Driver implements bank.BankDriver {
         }
 
         @Override
-        public boolean isActive() {
-            return active;
-        }
-
-        @Override
-        public void deposit(double amount) throws InactiveException {
-            if(!active) throw new InactiveException();
-            if(amount < 0) throw new IllegalArgumentException("Amount is negative");
-            if(balance + amount < 0) throw new IllegalArgumentException("Overflow");
-            balance += amount;
-        }
-
-        @Override
-        public void withdraw(double amount) throws InactiveException, OverdrawException {
-            if(!active) throw new InactiveException();
-            if(amount < 0) throw new IllegalArgumentException("Amount is negative");
-            if(balance - amount < 0) throw new OverdrawException("There is not enough balance on the account");
-            balance -= amount;
-        }
-
-        @Override
-        public boolean deactivate(){
-            if(!active) return false;
-            if(balance == 0){
-                active = false;
+        public boolean isActive() throws IOException {
+            Response<Boolean> response = sendData(new IsActiveCommand(getNumber()));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
             }
-            return !active;
+            return response.getResponse();
+        }
+
+        @Override
+        public void deposit(double amount) throws InactiveException, IOException {
+            if(!active) throw new InactiveException();
+            if(amount < 0) throw new IllegalArgumentException("Amount is negative");
+
+            Response response = sendData(new DepositCommand(getNumber(), amount));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+        }
+
+        @Override
+        public void withdraw(double amount) throws InactiveException, OverdrawException, IOException {
+            if(!active) throw new InactiveException();
+            if(amount < 0) throw new IllegalArgumentException("Amount is negative");
+            Response response = sendData(new WithdrawCommand(getNumber(), amount));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+        }
+
+        @Override
+        public boolean deactivate() throws IOException {
+            Response<Boolean> response = sendData(new DeactivateCommand(getNumber()));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+            return response.getResponse();
         }
 
     }

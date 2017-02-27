@@ -18,7 +18,7 @@ public class SockedServer implements Runnable{
 
     private static final int port = 6789;
     private Socket socket;
-    private final Bank bank;
+    private static Bank bank = new ServerBank();
 
     public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(port)) {
@@ -34,7 +34,6 @@ public class SockedServer implements Runnable{
 
     private SockedServer(Socket s) {
         this.socket= s;
-        bank = new ServerBank();
     }
 
     @Override
