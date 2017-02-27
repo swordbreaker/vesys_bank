@@ -1,21 +1,25 @@
 package bank.sockets;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import bank.Account;
 import bank.InactiveException;
 import bank.OverdrawException;
+import bank.commands.*;
 
 public class Driver implements bank.BankDriver {
     private bank.Bank bank = null;
+    private static String server;
+    private static int port;
 
     @Override
     public void connect(String[] args) {
+        server = args[0];
+        port = Integer.parseInt(args[1]);
         bank = new bank.sockets.Driver.Bank();
         System.out.println("connected...");
     }
@@ -31,6 +35,29 @@ public class Driver implements bank.BankDriver {
         return bank;
     }
 
+    public static <T extends Serializable> Response<T> sendData(ICommand command){
+        try(Socket s = new Socket(server, port)){
+            try(OutputStream out = s.getOutputStream(); InputStream in = s.getInputStream()){
+                try(ObjectOutputStream oos = new ObjectOutputStream(out); ObjectInputStream ois = new ObjectInputStream(in)){
+                    oos.writeObject(command);
+                    oos.flush();
+
+                    return (Response<T>)ois.readObject();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                    Response r = new Response<>(null);
+                    r.setException(e);
+                    return r;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Response r = new Response<>(null);
+            r.setException(e);
+            return r;
+        }
+    }
+
     static class Bank implements bank.Bank {
 
         private final Map<String, bank.sockets.Driver.Account> accounts = new HashMap<>();
@@ -38,18 +65,21 @@ public class Driver implements bank.BankDriver {
         private int idCounter;
 
         @Override
-        public Set<String> getAccountNumbers() {
-            return accounts.entrySet().stream()
-                    .filter(stringAccountEntry -> stringAccountEntry.getValue().isActive())
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.toSet());
+        public Set<String> getAccountNumbers() throws IOException {
+            Response<HashSet<String>> response = Driver.sendData(new GetAccountNumbersCommand());
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+            return response.getResponse();
         }
 
         @Override
-        public String createAccount(String owner) {
-            String number = accountPrefix + idCounter++;
-            accounts.put(number, new bank.sockets.Driver.Account(owner, number));
-            return number;
+        public String createAccount(String owner) throws IOException {
+            Response<String> response = Driver.sendData(new CreateAccountCommand(owner));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+            return response.getResponse();
         }
 
         @Override
@@ -60,8 +90,12 @@ public class Driver implements bank.BankDriver {
         }
 
         @Override
-        public bank.Account getAccount(String number) {
-            return accounts.get(number);
+        public bank.Account getAccount(String number) throws IOException {
+            Response<Account> response = sendData(new GetAccountCommand(number));
+            if(response.getException() != null){
+                throw new IOException(response.getException().getMessage());
+            }
+            return response.getResponse();
         }
 
         @Override
