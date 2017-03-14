@@ -1,4 +1,4 @@
-package bank.sockets.server;
+package bank.common;
 
 import bank.Account;
 import bank.InactiveException;

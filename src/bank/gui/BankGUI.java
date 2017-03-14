@@ -68,8 +68,8 @@ public class BankGUI extends JFrame {
 	private JButton btn_withdraw  = new JButton("Withdraw Money");
 	private JButton btn_transfer  = new JButton("Transfer Money");
 
-	private JMenuItem item_new    = new JMenuItem("New Account...");
-	private JMenuItem item_close  = new JMenuItem("Close Account");
+	private JMenuItem item_new    = new JMenuItem("New LocalAccount...");
+	private JMenuItem item_close  = new JMenuItem("Close LocalAccount");
 	private JMenuItem item_exit   = new JMenuItem("Exit");
 	private JMenuItem item_about  = new JMenuItem("About");
 	
@@ -195,7 +195,7 @@ public class BankGUI extends JFrame {
 		setResizable(false);
 
 		JPanel center=new JPanel(new GridLayout(3,2,5,5));
-		center.add(new JLabel("Account Nr: ", SwingConstants.RIGHT));
+		center.add(new JLabel("LocalAccount Nr: ", SwingConstants.RIGHT));
 		center.add(accountcombo);
 		center.add(new JLabel("Owner: ", SwingConstants.RIGHT));
 		center.add(fld_owner);
@@ -241,7 +241,7 @@ public class BankGUI extends JFrame {
 	}
 
 	public void addAccount() {
-		AddAccountDialog addaccount = new AddAccountDialog(this, "Add Account");
+		AddAccountDialog addaccount = new AddAccountDialog(this, "Add LocalAccount");
 
 		Point loc = getLocation();
 		addaccount.setLocation(loc.x + 50, loc.y + 50);
@@ -258,7 +258,7 @@ public class BankGUI extends JFrame {
 			}
 
 			if(number==null){
-				JOptionPane.showMessageDialog(this, "Account could not be created",
+				JOptionPane.showMessageDialog(this, "LocalAccount could not be created",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
@@ -281,7 +281,7 @@ public class BankGUI extends JFrame {
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (InactiveException e) {
-					JOptionPane.showMessageDialog(this, "Account is inactive",
+					JOptionPane.showMessageDialog(this, "LocalAccount is inactive",
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (Exception e){
@@ -308,7 +308,7 @@ public class BankGUI extends JFrame {
 						refreshDialog();
 					}
 					else {
-						JOptionPane.showMessageDialog(this, "Account could not be closed",
+						JOptionPane.showMessageDialog(this, "LocalAccount could not be closed",
 							"Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -340,7 +340,7 @@ public class BankGUI extends JFrame {
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (InactiveException e) {
-					JOptionPane.showMessageDialog(this, "Account is inactive",
+					JOptionPane.showMessageDialog(this, "LocalAccount is inactive",
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (Exception e){
@@ -371,11 +371,11 @@ public class BankGUI extends JFrame {
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (InactiveException e) {
-					JOptionPane.showMessageDialog(this, "Account is inactive",
+					JOptionPane.showMessageDialog(this, "LocalAccount is inactive",
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch (OverdrawException e) {
-					JOptionPane.showMessageDialog(this, "Account must not be overdrawn",
+					JOptionPane.showMessageDialog(this, "LocalAccount must not be overdrawn",
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 		    	catch (Exception e) {
@@ -430,7 +430,7 @@ public class BankGUI extends JFrame {
 								"Error", JOptionPane.ERROR_MESSAGE);
 						}
 						catch (OverdrawException e) {
-							JOptionPane.showMessageDialog(this, "Account must not be overdrawn",
+							JOptionPane.showMessageDialog(this, "LocalAccount must not be overdrawn",
 								"Error", JOptionPane.ERROR_MESSAGE);
 						}
 			    	}
@@ -507,7 +507,7 @@ public class BankGUI extends JFrame {
 					fld_balance.setText(currencyFormat(a.getBalance()));
 				}
 				else {
-					JOptionPane.showMessageDialog(this,"Account not found",
+					JOptionPane.showMessageDialog(this,"LocalAccount not found",
 						"Error", JOptionPane.ERROR_MESSAGE);
 					refreshDialog();
 				}
@@ -582,13 +582,13 @@ public class BankGUI extends JFrame {
 
 		public AboutBox(Frame parent){
 			super(parent);
-			setTitle("About Bank Client");
+			setTitle("About LocalBank Client");
 			setResizable(false);
 
 			JPanel p_text = new JPanel(new GridLayout(0, 1));
 			p_text.setBorder(BorderFactory.createEmptyBorder(20,50,20,50));
 			p_text.add(new JLabel("Distributed Systems", SwingConstants.CENTER));
-			p_text.add(new JLabel("Bank Client", SwingConstants.CENTER));
+			p_text.add(new JLabel("LocalBank Client", SwingConstants.CENTER));
 			p_text.add(new JLabel("", SwingConstants.CENTER));
 			p_text.add(new JLabel("(c) D. Gruntz, 2001-2017", SwingConstants.CENTER));
 
@@ -661,9 +661,9 @@ public class BankGUI extends JFrame {
 
 			// Create Layout
 			JPanel p=new JPanel(new GridLayout(4,2,10,10));
-			p.add(new JLabel("From Account:", JLabel.RIGHT));
+			p.add(new JLabel("From LocalAccount:", JLabel.RIGHT));
 			p.add(new JLabel(account));
-			p.add(new JLabel("To Account:", JLabel.RIGHT));
+			p.add(new JLabel("To LocalAccount:", JLabel.RIGHT));
 			p.add(accountcombo);
 			p.add(new JLabel("Amount:", JLabel.RIGHT));
 			p.add(balancefield);

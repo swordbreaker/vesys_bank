@@ -27,7 +27,7 @@ public class RunClient extends JFrame {
 	}
 
 	private RunClient() {
-		super("Choose Bank Driver");
+		super("Choose LocalBank Driver");
 		Vector<String> vect = new Vector<>();
 
 		try {

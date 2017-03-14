@@ -73,7 +73,7 @@ public class Driver implements bank.BankDriver {
 		public void transfer(bank.Account from, bank.Account to, double amount) throws IOException, InactiveException, OverdrawException {
 			if(amount < 0) throw new IllegalArgumentException("Amount is negative");
 			if(!from.isActive() || !to.isActive()) throw new InactiveException("One of the Accounts is inactive");
-			if(from.getBalance() - amount < 0) throw new OverdrawException("Account a has not enough money");
+			if(from.getBalance() - amount < 0) throw new OverdrawException("LocalAccount a has not enough money");
 
 			from.withdraw(amount);
 			to.deposit(amount);

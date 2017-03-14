@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * The <code>Bank</code> interface describes the functionality of a bank. Using
+ * The <code>LocalBank</code> interface describes the functionality of a bank. Using
  * this interface, new accounts can be created and existing accounts can be
  * closed.
  * 

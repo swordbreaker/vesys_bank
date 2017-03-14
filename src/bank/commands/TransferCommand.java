@@ -10,18 +10,20 @@ import java.io.IOException;
 
 public class TransferCommand implements ICommand {
 
-    private Account from;
-    private Account to;
+    private String fromNumber;
+    private String toNumber;
     private double amount;
 
-    public TransferCommand(Account from, Account to, double amount) {
-        this.from = from;
-        this.to = to;
+    public TransferCommand(String fromNumber, String toNumber, double amount) {
+        this.fromNumber = fromNumber;
+        this.toNumber = toNumber;
         this.amount = amount;
     }
 
     @Override
     public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+        Account from = bank.getAccount(fromNumber);
+        Account to = bank.getAccount(toNumber);
         bank.transfer(from, to, amount);
         return new Response<>(null);
     }

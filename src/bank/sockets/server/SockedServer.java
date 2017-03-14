@@ -6,6 +6,7 @@ import bank.InactiveException;
 import bank.OverdrawException;
 import bank.commands.ICommand;
 import bank.commands.Response;
+import bank.common.ServerBank;
 
 import java.io.IOException;
 import java.io.InputStream;

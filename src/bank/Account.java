@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * The Account interface represents a single account. It can be used to deposit
+ * The LocalAccount interface represents a single account. It can be used to deposit
  * and withdraw money. The amounts are always given in Swiss Francs. References
  * to accounts can be obtained over a bank interface.
  * 

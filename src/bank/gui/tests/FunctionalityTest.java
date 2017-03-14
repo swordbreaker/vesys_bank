@@ -181,7 +181,7 @@ public class FunctionalityTest implements BankTest {
 		}
 
 //		if (msg == null) {
-//			Bank bank = driver.getBank();
+//			LocalBank bank = driver.getBank();
 //			if (bank != this.bank)
 //				msg = "getBank should be implemented as singleton";
 //		}

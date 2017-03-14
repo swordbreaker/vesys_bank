@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<project name="bank" default="compile" basedir=".">
+
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="res.dir" value="${basedir}/res"/>
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="classes.dir" value="${basedir}/bin"/>
+
+    <!--
+        <property environment="env"/>
+        <property name="tomcat.home" value="${env.CATALINA_HOME}"/>
+    -->
+    <property name="tomcat.home" value="C:\xampp\tomcat"/>
+
+    <!-- Build classpath -->
+    <path id="classpath">
+        <pathelement location="${classes.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="prepare" >
+        <mkdir dir="${classes.dir}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${classes.dir}"/>
+    </target>
+
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               debug="on"
+               includeantruntime="false"
+               deprecation="on"
+               optimize="off">
+            <classpath refid="classpath"/>
+            <include name="**/*.java" />
+        </javac>
+    </target>
+
+    <target name="bank.war" depends="compile">
+        <war warfile="${basedir}/bank.war" webxml="${res.dir}/web.xml">
+            <classes dir="${classes.dir}" >
+                <include name="bank/http/Server/*.class" />
+                <include name="bank/commands/*.class" />
+                <include name="bank/common/ServerAccount.class" />
+                <include name="bank/common/ServerBank.class" />
+                <include name="bank/Account.class" />
+                <include name="bank/Bank.class" />
+                <include name="bank/InactiveException.class" />
+                <include name="bank/OverdrawException.class" />
+            </classes>
+        </war>
+    </target>
+
+    <target name="bank.deploy" depends="bank.war">
+        <copy file="${basedir}/bank.war" todir="${tomcat.home}/webapps"/>
+    </target>
+
+    <target name="bank.undeploy">
+        <delete file="${tomcat.home}/webapps/bank.war"/>
+    </target>
+</project>
+
