@@ -89,8 +89,8 @@ public class Driver implements bank.BankDriver {
 
         @Override
         public bank.Account getAccount(String number) throws IOException {
-            Response<bank.Account> response = Driver.sendData(new GetAccountCommand(number));
-            if(response.getResponse() != null){
+            Response<Boolean> response = Driver.sendData(new GetAccountCommand(number));
+            if(response.getResponse()){
                 return new Account(number);
             }
             else{

@@ -75,32 +75,21 @@ public class Driver implements bank.BankDriver {
 			if(!from.isActive() || !to.isActive()) throw new InactiveException("One of the Accounts is inactive");
 			if(from.getBalance() - amount < 0) throw new OverdrawException("Account a has not enough money");
 
-			double removedFormA = 0;
-			double addedToB = 0;
-			try{
-				from.withdraw(amount);
-				removedFormA = amount;
-				to.deposit(amount);
-				addedToB = amount;
-			} catch (IOException | IllegalArgumentException | OverdrawException | InactiveException e){
-				from.deposit(removedFormA);
-				to.withdraw(addedToB);
-				throw e;
-			}
+			from.withdraw(amount);
+			to.deposit(amount);
 		}
 
 	}
 
 	static class Account implements bank.Account {
-		private String number;
-		private String owner;
+		private final String number;
+		private final String owner;
 		private double balance;
 		private boolean active = true;
 
 		Account(String owner, String number) {
 			this.owner = owner;
 			this.number = number;
-			active = true;
 		}
 
 		@Override
@@ -127,7 +116,6 @@ public class Driver implements bank.BankDriver {
 		public void deposit(double amount) throws InactiveException {
 			if(!active) throw new InactiveException();
 			if(amount < 0) throw new IllegalArgumentException("Amount is negative");
-			if(balance + amount < 0) throw new IllegalArgumentException("Overflow");
 			balance += amount;
 		}
 

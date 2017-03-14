@@ -7,9 +7,7 @@ import bank.OverdrawException;
 
 import java.io.IOException;
 
-/**
- * Created by tobia on 27.02.2017.
- */
+
 public class TransferCommand implements ICommand {
 
     private Account from;
@@ -23,7 +21,7 @@ public class TransferCommand implements ICommand {
     }
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
         bank.transfer(from, to, amount);
         return new Response<>(null);
     }

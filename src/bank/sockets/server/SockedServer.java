@@ -45,7 +45,7 @@ public class SockedServer implements Runnable{
             try{
                 ObjectInputStream stream = new ObjectInputStream(in);
                 ICommand command = (ICommand)stream.readObject();
-                response = command.Apply(bank);
+                response = command.apply(bank);
             }
             catch (InactiveException | OverdrawException e) {
                 response.setException(e);

@@ -8,5 +8,5 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public interface ICommand extends Serializable {
-    Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException;
+    Response apply(Bank bank) throws IOException, InactiveException, OverdrawException;
 }

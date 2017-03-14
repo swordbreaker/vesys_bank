@@ -12,7 +12,8 @@ public class DeactivateCommand extends AbstractAccountCommand {
     }
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+        if(bank.getAccount(number) == null) return new Response<>(false);
         return new Response<>(bank.getAccount(number).deactivate());
     }
 }

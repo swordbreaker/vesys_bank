@@ -15,7 +15,7 @@ public class WithdrawCommand extends AbstractAccountCommand {
     }
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
         bank.getAccount(number).withdraw(amount);
         return new Response<>(null);
     }

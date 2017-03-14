@@ -10,7 +10,7 @@ import java.util.HashSet;
 public class GetAccountNumbersCommand implements ICommand{
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
         return new Response<>((HashSet<String>)bank.getAccountNumbers());
     }
 }

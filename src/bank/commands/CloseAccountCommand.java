@@ -9,15 +9,15 @@ import java.io.IOException;
 /**
  * Created by tobia on 27.02.2017.
  */
-public class CloseAccountCommand implements ICommand {
+public class CloseAccountCommand extends AbstractAccountCommand {
     private String number;
 
     public CloseAccountCommand(String number) {
-        this.number = number;
+        super(number);
     }
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
         return new Response<>(bank.closeAccount(number));
     }
 }

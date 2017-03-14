@@ -14,10 +14,6 @@ public class Response<T extends Serializable> implements Serializable {
         return response;
     }
 
-    public void setResponse(T response) {
-        this.response = response;
-    }
-
     public Exception getException() {
         return exception;
     }

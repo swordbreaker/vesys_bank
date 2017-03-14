@@ -12,7 +12,7 @@ public class IsActiveCommand extends AbstractAccountCommand {
     }
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
         return new Response<>(bank.getAccount(number).isActive());
     }
 }

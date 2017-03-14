@@ -6,9 +6,6 @@ import bank.OverdrawException;
 
 import java.io.IOException;
 
-/**
- * Created by tobia on 27.02.2017.
- */
 public class DepositCommand extends AbstractAccountCommand {
     private double amount;
 
@@ -18,7 +15,7 @@ public class DepositCommand extends AbstractAccountCommand {
     }
 
     @Override
-    public Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException {
+    public Response apply(Bank bank) throws IOException, InactiveException, OverdrawException {
         bank.getAccount(number).deposit(amount);
         return new Response<>(null);
     }

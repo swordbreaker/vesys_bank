@@ -15,7 +15,4 @@ public abstract class AbstractAccountCommand implements ICommand{
     public AbstractAccountCommand(String number) {
         this.number = number;
     }
-
-    @Override
-    public abstract Response Apply(Bank bank) throws IOException, InactiveException, OverdrawException;
 }
