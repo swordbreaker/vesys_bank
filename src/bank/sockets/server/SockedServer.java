@@ -1,6 +1,5 @@
 package bank.sockets.server;
 
-
 import bank.Bank;
 import bank.InactiveException;
 import bank.OverdrawException;

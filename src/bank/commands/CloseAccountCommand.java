@@ -6,12 +6,8 @@ import bank.OverdrawException;
 
 import java.io.IOException;
 
-/**
- * Created by tobia on 27.02.2017.
- */
-public class CloseAccountCommand extends AbstractAccountCommand {
-    private String number;
 
+public class CloseAccountCommand extends AbstractAccountCommand {
     public CloseAccountCommand(String number) {
         super(number);
     }

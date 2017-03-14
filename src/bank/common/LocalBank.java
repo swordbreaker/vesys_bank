@@ -58,27 +58,20 @@ public class LocalBank implements bank.Bank {
     public void transfer(bank.Account from, bank.Account to, double amount) throws IOException, InactiveException, OverdrawException {
         if(amount < 0) throw new IllegalArgumentException("Amount is negative");
 
-        try{
-            Response response = driver.sendData(new TransferCommand(from.getNumber(), to.getNumber(), amount));
-            if(response.getException() != null){
-                Exception exp = response.getException();
-                if(exp instanceof  InactiveException){
-                    throw (InactiveException)exp;
-                }
-                else if (exp instanceof OverdrawException){
-                    throw (OverdrawException)exp;
-                }
-                else if (exp instanceof  IOException) {
-                    throw (IOException)exp;
-                }
-                else{
-                    throw new IOException("Transfer Failed: " + response.getException().getMessage());
-                }
+        Response response = driver.sendData(new TransferCommand(from.getNumber(), to.getNumber(), amount));
+        if (response.getException() != null) {
+            Exception exp = response.getException();
+            if (exp instanceof InactiveException) {
+                throw (InactiveException) exp;
+            } else if (exp instanceof OverdrawException) {
+                throw (OverdrawException) exp;
+            } else if (exp instanceof IOException) {
+                throw (IOException) exp;
+            } else {
+                throw new IOException("Transfer Failed: " + response.getException().getMessage());
             }
-            from.withdraw(amount);
-            to.deposit(amount);
-        } catch (IOException | IllegalArgumentException | OverdrawException | InactiveException e){
-            throw e;
         }
+        from.withdraw(amount);
+        to.deposit(amount);
     }
 }

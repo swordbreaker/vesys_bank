@@ -89,13 +89,12 @@ public class LocalAccount implements bank.Account {
         }
     }
 
-    @Override
-    public boolean deactivate() throws IOException {
-        Response<Boolean> response = driver.sendData(new DeactivateCommand(getNumber()));
-        if(response.getException() != null){
-            throw new IOException("deactivate failed: " + response.getException().getMessage());
-        }
-        return response.getResponse();
-    }
-
+//    @Override
+//    public boolean deactivate() throws IOException {
+//        Response<Boolean> response = driver.sendData(new DeactivateCommand(getNumber()));
+//        if(response.getException() != null){
+//            throw new IOException("deactivate failed: " + response.getException().getMessage());
+//        }
+//        return response.getResponse();
+//    }
 }

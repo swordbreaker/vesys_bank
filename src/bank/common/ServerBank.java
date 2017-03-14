@@ -47,17 +47,7 @@ public class ServerBank implements Bank {
         if(!from.isActive() || !to.isActive()) throw new InactiveException("One of the Accounts is inactive");
         if(from.getBalance() - amount < 0) throw new OverdrawException("LocalAccount a has not enough money");
 
-        double removedFormA = 0;
-        double addedToB = 0;
-        try{
-            from.withdraw(amount);
-            removedFormA = amount;
-            to.deposit(amount);
-            addedToB = amount;
-        } catch (IOException | IllegalArgumentException | OverdrawException | InactiveException e){
-            from.deposit(removedFormA);
-            to.withdraw(addedToB);
-            throw e;
-        }
+        from.withdraw(amount);
+        to.deposit(amount);
     }
 }

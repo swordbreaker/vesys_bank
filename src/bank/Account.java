@@ -83,7 +83,4 @@ public interface Account extends Serializable {
 	 * @throws IOException if a remoting or communication problem occurs
 	 */
 	double getBalance() throws IOException;
-
-
-	boolean deactivate() throws IOException;
 }

@@ -52,8 +52,7 @@ public class ServerAccount implements Account {
         balance -= amount;
     }
 
-    @Override
-    public boolean deactivate(){
+    boolean deactivate(){
         if(!active) return false;
         if(balance == 0){
             active = false;

@@ -9,7 +9,6 @@ import bank.commands.ICommand;
 import bank.commands.Response;
 import bank.common.CommonClientDriver;
 import bank.common.LocalBank;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -61,9 +60,6 @@ public class Driver extends CommonClientDriver {
             oos.writeObject(command);
             oos.flush();
             oos.close();
-
-            int responseCode = connection.getResponseCode();
-            System.out.println("Response Code: " + responseCode);
 
             ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
             r = (Response<T>)ois.readObject();
