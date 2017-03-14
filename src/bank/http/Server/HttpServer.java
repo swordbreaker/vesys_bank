@@ -12,16 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.Date;
-import java.util.Enumeration;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 
 
-//@WebServlet(
-//        name="LocalBank",
-//        urlPatterns={"/bank"}
-//)
 @WebServlet("")
 public class HttpServer extends HttpServlet {
     private static Bank bank = new ServerBank();
@@ -37,27 +34,16 @@ public class HttpServer extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse servletResponse) throws IOException {
-        java.util.logging.Logger.getLogger(HttpServer.class.getName()).log(Level.WARNING, "doPost");
-        try (ObjectOutputStream oos = new ObjectOutputStream(servletResponse.getOutputStream()); InputStream in = request.getInputStream()) {
-            java.util.logging.Logger.getLogger(HttpServer.class.getName()).log(Level.WARNING, "A");
-            Response response = new Response<>(null);
-            try {
-                java.util.logging.Logger.getLogger(HttpServer.class.getName()).log(Level.WARNING, "B");
-                ObjectInputStream stream = new ObjectInputStream(in);
-                java.util.logging.Logger.getLogger(HttpServer.class.getName()).log(Level.WARNING, "C");
-                ICommand command = (ICommand) stream.readObject();
-                response = command.apply(bank);
-            } catch (InactiveException | OverdrawException e) {
-                response.setException(e);
-                e.printStackTrace();
-            } finally {
-                oos.writeObject(response);
-                oos.flush();
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println(e);
-            java.util.logging.Logger.getLogger(HttpServer.class.getName()).log(Level.WARNING, e.toString());
-            throw new RuntimeException(e);
+        ObjectOutputStream out = new ObjectOutputStream(servletResponse.getOutputStream());
+        ObjectInputStream in = new ObjectInputStream(request.getInputStream());
+        Response response = new Response<>(null);
+        try {
+            ICommand command = (ICommand) in.readObject();
+            response = command.apply(bank);
+        } catch (ClassNotFoundException | InactiveException | OverdrawException e) {
+            response.setException(e);
+            java.util.logging.Logger.getLogger(HttpServer.class.getName()).log(Level.WARNING, e.getMessage());
         }
+        out.writeObject(response);
     }
 }

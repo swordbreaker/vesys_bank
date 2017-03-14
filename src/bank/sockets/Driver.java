@@ -34,7 +34,16 @@ public class Driver extends CommonClientDriver {
     public <T extends Serializable> Response<T> sendData(ICommand command) {
         try (Socket s = new Socket(server, port)) {
             try (OutputStream out = s.getOutputStream(); InputStream in = s.getInputStream()) {
-                return sendData(out, in, command);
+                try (ObjectOutputStream oos = new ObjectOutputStream(out); ObjectInputStream ois = new ObjectInputStream(in)) {
+                    oos.writeObject(command);
+                    oos.flush();
+                    return (Response<T>) ois.readObject();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                    Response r = new Response<>(null);
+                    r.setException(e);
+                    return r;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

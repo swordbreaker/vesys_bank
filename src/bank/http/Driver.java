@@ -10,10 +10,7 @@ import bank.commands.Response;
 import bank.common.CommonClientDriver;
 import bank.common.LocalBank;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -56,22 +53,26 @@ public class Driver extends CommonClientDriver {
     }
 
     public <T extends Serializable> Response<T> sendData(ICommand command) {
+        Response r = new Response<>(null);
         try {
             HttpURLConnection connection = GetConnection();
+            ObjectOutputStream oos = new ObjectOutputStream(connection.getOutputStream());
 
-        try (OutputStream out = connection.getOutputStream(); InputStream in = connection.getInputStream()) {
-            return sendData(out, in, command);
+            oos.writeObject(command);
+            oos.flush();
+            oos.close();
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
+            r = (Response<T>)ois.readObject();
+            ois.close();
         } catch (IOException e) {
-            e.printStackTrace();
-            Response r = new Response<>(null);
             r.setException(e);
-            connection.disconnect();
-            return r;
-        }
-
-        } catch (IOException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            return null;
         }
+        return r;
     }
 }
