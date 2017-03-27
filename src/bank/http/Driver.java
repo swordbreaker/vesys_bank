@@ -22,7 +22,7 @@ public class Driver extends CommonClientDriver {
     public void connect(String[] args) {
         bank = new LocalBank(this);
         try {
-            url = new URL("http://" + args[0] + ":" + args[1] + "/bank");
+            url = new URL("http://" + args[0] + ":" + args[1] + "/bank/bank");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
