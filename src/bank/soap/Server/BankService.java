@@ -5,5 +5,5 @@ import javax.jws.WebService;
 
 @WebService
 public interface BankService {
-    String action(@WebParam(name = "object") String object);
+    byte[] action(@WebParam(name = "data") byte[] data);
 }

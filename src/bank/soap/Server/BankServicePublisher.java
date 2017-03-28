@@ -8,7 +8,7 @@ import javax.xml.ws.Endpoint;
 public class BankServicePublisher {
     public static void main(String[] args) {
         Endpoint.publish(
-                "http://" + args[0] + ":" + args[1] + "/bank", // publication URI
+                "http://localhost:7890/bank", // publication URI
                 new BankServiceImplementation());
                 System.out.println("service published");
     }
