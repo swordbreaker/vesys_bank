@@ -5,6 +5,8 @@ import bank.OverdrawException;
 import bank.commands.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class LocalAccount implements bank.Account {
     private final String number;
@@ -13,6 +15,10 @@ public class LocalAccount implements bank.Account {
     LocalAccount(String number, CommonClientDriver driver) {
         this.number = number;
         this.driver = driver;
+
+        ArrayList<Integer> bla = new ArrayList<Integer>();
+        Stream<String> a =  bla.stream().map(i -> i.toString());
+
     }
 
     @Override

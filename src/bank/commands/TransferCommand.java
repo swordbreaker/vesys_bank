@@ -7,7 +7,6 @@ import bank.OverdrawException;
 
 import java.io.IOException;
 
-
 public class TransferCommand implements ICommand {
 
     private String fromNumber;

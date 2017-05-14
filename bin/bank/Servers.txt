@@ -2,3 +2,5 @@ bank.local.Driver
 -
 bank.sockets.Driver localhost 6789
 bank.http.Driver localhost 8080
+bank.soap.Driver localhost 7890
+bank.rmi.Driver
