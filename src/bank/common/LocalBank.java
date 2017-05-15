@@ -71,7 +71,5 @@ public class LocalBank implements bank.Bank {
                 throw new IOException("Transfer Failed: " + response.getException().getMessage());
             }
         }
-        from.withdraw(amount);
-        to.deposit(amount);
     }
 }
